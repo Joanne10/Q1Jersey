@@ -46,8 +46,13 @@ public class MyResource {
         int k = 1 + zi.mod(new BigInteger("25")).intValue();
         
         //Get I from C
-        int n = 1;
-        while (n * (n + 1) < c.length() * 2) n++;
+        //int n = 1;
+        //while (n * (n + 1) < c.length() * 2) n++;
+        int n = (int) Math.sqrt((2 * c.length()));
+        if ((n * (n + 1)) / 2 != c.length()) {
+            return "ERROR!";
+        }
+        
         ArrayList<char[]> list = new ArrayList<char[]>();
         for (int i = 1; i <= n; i++) list.add(new char[i]);
         int at = 0;
@@ -72,6 +77,7 @@ public class MyResource {
             start++;
             end--;
         }
+
         //System.out.println();
         if (at < c.length()) list.get(2 * (n - 1) / 3)[(n - 1) / 3] = c.charAt(at);
 
