@@ -13,8 +13,8 @@ import java.net.URI;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
+    // http://0.0.0.0:8080/q1?key=1239793247987948712739187492308012309184023849817397189273981723912221&message=QTGXGTHWEQENWQVKPIRFO
     public static final String BASE_URI = "http://0.0.0.0:8080/";
-    ///q1?key=1239793247987948712739187492308012309184023849817397189273981723912221&message=QTGXGTHWEQENWQVKPIRFO
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.

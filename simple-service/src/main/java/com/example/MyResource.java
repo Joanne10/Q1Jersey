@@ -61,12 +61,15 @@ public class MyResource {
             return "ERROR!";
         }
         
-        String res1 = decodeHelper1(k, n, c);
-        System.out.println(res1);
-        // String res2 = decodeHelper2(k, n, c);
         try {
+            // method 1
+            String res1 = decodeHelper1(k, n, c);
+            System.out.println(res1);
+            
+            // method2
             String res2 = decodeHelper2(k, n, c);
             System.out.println(res2);
+            
             if (res1.equals(res2)) {
                 return res1;
             }
@@ -170,16 +173,14 @@ public class MyResource {
             }
         }
         
-        /*
-        // check the structure of the triangle
-        for (int i = 0; i < triangle.size(); i++) {
-            for (int j = 0; j < triangle.get(i).length; j++) {
-                System.out.print(triangle.get(i)[j] + " - ");
-            }
-            System.out.println();
-        }
-        */
-
+        // get all column from right to left
+        // (0, 0)
+        // P
+        // Q K
+        // R L G
+        // S M H D
+        // T N I E B
+        // U O J F C A
         StringBuilder res = new StringBuilder();
         for (int j = height - 1; j >= 0; j--) {
             for (int i = j; i < height; i++) {
