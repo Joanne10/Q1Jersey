@@ -6,6 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.QueryParam;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -15,6 +16,18 @@ import java.util.*;
 public class MyResource {
     
     private final String x = "12389084059184098308123098579283204880956800909293831223134798257496372124879237412193918239183928140";
+    
+    /*
+     * TEAMID,TEAM_AWS_ACCOUNT_ID\n
+     * yyyy-MM-dd HH:mm:ss\n
+     * [The decrypted message M]\n
+     * 
+     * TeamCoolCloud,1234-0000-0001
+     * 2004-08-15 16:23:42
+     * CLOUDCOMPUTINGFOREVER
+     */
+    private final String teamId = "CoreDump_BUPT";
+    private final String awsId = "581371889400";
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -61,6 +74,22 @@ public class MyResource {
             return "ERROR!";
         }
         
+        /*
+         * Result format:
+         * TEAMID,TEAM_AWS_ACCOUNT_ID\n
+         * yyyy-MM-dd HH:mm:ss\n
+         * [The decrypted message M]\n
+         * 
+         * Result instance:
+         * TeamCoolCloud,1234-0000-0001
+         * 2004-08-15 16:23:42
+         * CLOUDCOMPUTINGFOREVER
+         */
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = date.format(new Date());
+        
+        String text = "";
+        // change this when submit
         try {
             // method 1
             String res1 = decodeHelper1(k, n, c);
@@ -71,12 +100,16 @@ public class MyResource {
             System.out.println(res2);
             
             if (res1.equals(res2)) {
-                return res1;
+                text = res1;
+            } else {
+                text = "Algorithm needs further check!";
             }
         } catch(Exception e) {
             e.printStackTrace();
         }
-        return "Algorithm needs further check!";
+        
+        // return format result
+        return this.teamId + "," + this.awsId + "\n" + currentTime + "\n" + text;
     }
     
     private String decodeHelper1(int k, int n, String c) {
