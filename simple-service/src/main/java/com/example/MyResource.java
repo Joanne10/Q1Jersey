@@ -38,9 +38,25 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@QueryParam("key") String y, @QueryParam("message") String c) {
-        // void case
-        if (c == null || c.length() == 0) {
-            return "NULL";
+    	/*
+         * Result format:
+         * TEAMID,TEAM_AWS_ACCOUNT_ID\n
+         * yyyy-MM-dd HH:mm:ss\n
+         * [The decrypted message M]\n
+         * 
+         * Result instance:
+         * TeamCoolCloud,1234-0000-0001
+         * 2004-08-15 16:23:42
+         * CLOUDCOMPUTINGFOREVER
+         */
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = date.format(new Date());
+        
+        String text = "";
+        // change this when submit
+    	// void case
+        if (y == null || y.length() == 0 || c == null || c.length() == 0) {
+        	return this.teamId + "," + this.awsId + "\n" + currentTime + "\n" + "INVALID\n";
         }
         
         //String y = "1239793247987948712739187492308012309184023849817397189273981723912221";
@@ -71,25 +87,9 @@ public class MyResource {
         
         // check equilateral triangle
         if ((n * (n + 1)) / 2 != c.length()) {
-            return "ERROR!";
+        	return this.teamId + "," + this.awsId + "\n" + currentTime + "\n" + "INVALID\n";
         }
         
-        /*
-         * Result format:
-         * TEAMID,TEAM_AWS_ACCOUNT_ID\n
-         * yyyy-MM-dd HH:mm:ss\n
-         * [The decrypted message M]\n
-         * 
-         * Result instance:
-         * TeamCoolCloud,1234-0000-0001
-         * 2004-08-15 16:23:42
-         * CLOUDCOMPUTINGFOREVER
-         */
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = date.format(new Date());
-        
-        String text = "";
-        // change this when submit
         try {
             // method 1
             String res1 = decodeHelper1(k, n, c);
