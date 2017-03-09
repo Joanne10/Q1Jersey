@@ -27,7 +27,7 @@ public class MyResource {
      * CLOUDCOMPUTINGFOREVER
      */
     private final String teamId = "CoreDump_BUPT";
-    private final String awsId = "581371889400";
+    private final String awsId = "4476-4286-3254";
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
