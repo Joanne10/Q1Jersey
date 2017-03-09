@@ -109,7 +109,7 @@ public class MyResource {
         }
         
         // return format result
-        return this.teamId + "," + this.awsId + "\n" + currentTime + "\n" + text;
+        return this.teamId + "," + this.awsId + "\n" + currentTime + "\n" + text + "\n";
     }
     
     private String decodeHelper1(int k, int n, String c) {
